@@ -11,5 +11,5 @@ after_success:
   # - npm prune --production  # 删除devDependencies
   # - tar -jcf indoor-server.tar.bz2 *    # 打包并压缩代码
   # - scp -r ./build root@:39.106.148.159:/root/testserver  # 复制到生产服务器上
-  - scp -r ../praise1 root@:39.106.148.159:/root/testserver  # 复制到生产服务器上
+  - scp -r ../praise1 -i ~/.ssh/tangtest root@:39.106.148.159:/root/testserver  # 复制到生产服务器上
   # - ssh root@:39.106.148.159 'cd indoor-server && pm2 startOrReload pm2.json'  # 重启pm2
