@@ -6,6 +6,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_d511758fa423_key -iv $encrypted_d511758fa423_iv
   -in tangtest.enc -out ~/.ssh/tangtest -d
 - chmod 600 ~/.ssh/tangtest
+- echo -e "Host 39.106.148.159\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
 
 after_success:
   # - npm prune --production  # 删除devDependencies
