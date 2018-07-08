@@ -12,4 +12,4 @@ after_success:
   - tar -jcf indoor-server.tar.bz2 *    # 打包并压缩代码
   - scp indoor-server.tar.bz2 root@:39.106.148.159~/  # 复制到生产服务器上
   - ssh root@:39.106.148.159 'mkdir -p indoor-server && tar -jxf indoor-server.tar.bz2 -C indoor-server'   # 解压
-  - ssh root@:39.106.148.159 'cd indoor-server && pm2 startOrReload pm2.json'  # 重启pm2
+  # - ssh root@:39.106.148.159 'cd indoor-server && pm2 startOrReload pm2.json'  # 重启pm2
