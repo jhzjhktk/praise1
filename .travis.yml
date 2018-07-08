@@ -1,0 +1,16 @@
+
+language: node_js
+node_js:
+- 8.11.2
+before_install:
+- openssl aes-256-cbc -K $encrypted_d511758fa423_key -iv $encrypted_d511758fa423_iv
+  -in tangtest.enc -out ~\/.ssh/tangtest -d
+- chmod 600 ~/.ssh/tangtest
+script:
+  - npm run test
+after_success:
+  - npm prune --production  # 删除devDependencies
+  - tar -jcf indoor-server.tar.bz2 *    # 打包并压缩代码
+  - scp indoor-server.tar.bz2 root@:39.106.148.159~/  # 复制到生产服务器上
+  - ssh root@:39.106.148.159 'mkdir -p indoor-server && tar -jxf indoor-server.tar.bz2 -C indoor-server'   # 解压
+  - ssh root@:39.106.148.159 'cd indoor-server && pm2 startOrReload pm2.json'  # 重启pm2
